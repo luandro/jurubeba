@@ -4,8 +4,6 @@ COPY config.json /app/config/production.json
 
 COPY nginx.conf.patch /app/
 
-COPY custom_proxy_settings.conf /etc/nginx/conf.d/custom_proxy_settings.conf
-
 # RUN patch -u /etc/nginx/nginx.conf -i /app/nginx.conf.patch
 
 COPY custom/ /app/custom/
