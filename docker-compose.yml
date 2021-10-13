@@ -52,10 +52,9 @@ services:
         PUID: 1000
         PGID: 1000
         JELLYFIN_PublishedServerUrl: flix.com
-          #devices:
+    devices:
       - /dev/vchiq:/dev/vchiq #hardware acceleration for Rasp 3 e 4
       #  - /dev/vcsm:/dev/vcsm #hardware acceleration for Rasp 3
-
   filebrowser:
     image: filebrowser/filebrowser
     ports:
