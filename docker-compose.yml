@@ -8,6 +8,8 @@ volumes:
   jellyfin-cache:
   media:
   jellyfin-lib:
+  portal:
+  portal-config:
 
 services:
   # https://hub.docker.com/r/jc21/nginx-proxy-manager/
@@ -50,14 +52,13 @@ services:
         PUID: 1000
         PGID: 1000
         JELLYFIN_PublishedServerUrl: flix.com
-
-    devices:
+          #devices:
       - /dev/vchiq:/dev/vchiq #hardware acceleration for Rasp 3 e 4
       #  - /dev/vcsm:/dev/vcsm #hardware acceleration for Rasp 3
 
   filebrowser:
     image: filebrowser/filebrowser
-    ports: 
+    ports:
       - 83:80
     volumes:
       - media:/srv
@@ -65,4 +66,24 @@ services:
       PGID: 1000
       PUID: 1000
     command: -- c
+  code:
+    image: ghcr.io/linuxserver/code-server
+    ports:
+      - 84:8443
+    restart: unless-stopped
+    volumes:
+      - portal-config:/config
+      - portal:/config/workspace
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Brasil
+      PASSWORD: admin
+  portal:
+    image: communityfirst/portal
+    ports:
+      - 85:3000
+    restart: unless-stopped
+    volumes:
+      - portal:/usr/src/nuxt-app
 
