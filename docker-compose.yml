@@ -80,7 +80,7 @@ services:
       PASSWORD: admin
       PROXY_DOMAIN: code.psp.app.br	
   portal:
-    image: communityfirst/portal
+    image: communityfirst/portal-dev
     ports:
       - 85:3000
     restart: unless-stopped
