@@ -78,6 +78,7 @@ services:
       PGID: 1000
       TZ: America/Brasil
       PASSWORD: admin
+      PROXY_DOMAIN: code.psp.app.br	
   portal:
     image: communityfirst/portal
     ports:
