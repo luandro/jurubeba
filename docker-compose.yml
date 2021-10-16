@@ -86,4 +86,15 @@ services:
     restart: unless-stopped
     volumes:
       - portal:/usr/src/nuxt-app
-
+  metube:
+    image: alexta69/metube
+    container_name: metube
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - "86:8081"
+    volumes:
+      - media:/downloads
+    environment:
+      DOWNLOAD_DIR: /downloads/metube-video
+      AUDIO_DOWNLOAD_DIR: /downloads/metube-audio
