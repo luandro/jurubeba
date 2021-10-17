@@ -34,7 +34,7 @@ services:
       MYSQL_PASSWORD: "npm"
     ports:
       - '3306:3306'
-
+  # https://hub.docker.com/r/jc21/nginx-proxy-manager/
   jellyfin:
     image: jellyfin/jellyfin
     restart: unless-stopped
@@ -54,7 +54,8 @@ services:
         JELLYFIN_PublishedServerUrl: flix.com
     devices:
       - /dev/vchiq:/dev/vchiq #hardware acceleration for Rasp 3 e 4
-      #  - /dev/vcsm:/dev/vcsm #hardware acceleration for Rasp 3
+      # - /dev/vcsm:/dev/vcsm #hardware acceleration for Rasp 3
+  # https://hub.docker.com/r/filebrowser/filebrowser
   filebrowser:
     image: filebrowser/filebrowser
     ports:
@@ -65,6 +66,7 @@ services:
       PGID: 1000
       PUID: 1000
     command: -- c
+  # https://hub.docker.com/r/linuxserver/code-server
   code:
     image: ghcr.io/linuxserver/code-server
     ports:
@@ -78,7 +80,8 @@ services:
       PGID: 1000
       TZ: America/Brasil
       PASSWORD: admin
-      PROXY_DOMAIN: code.psp.app.br	
+      PROXY_DOMAIN: code.psp.app.br
+  # https://hub.docker.com/r/communityfirst/portal-dev
   portal:
     image: communityfirst/portal-dev
     ports:
@@ -86,6 +89,7 @@ services:
     restart: unless-stopped
     volumes:
       - portal:/usr/src/nuxt-app
+  # https://hub.docker.com/r/alexta69/metube
   metube:
     image: alexta69/metube
     container_name: metube
