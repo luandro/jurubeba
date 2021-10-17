@@ -90,9 +90,8 @@ services:
     image: alexta69/metube
     container_name: metube
     restart: unless-stopped
-    user: "1000:1000"
     ports:
-      - "86:8081"
+      - 86:8081
     volumes:
       - media:/downloads
     environment:
