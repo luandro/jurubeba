@@ -1,0 +1,31 @@
+name: Jurubeba
+type: sw.application
+description: >-
+  A digital territory by and for local communities. Members of Community-Networks should have a say on the
+  content they access and share with each other. Jurubeba provides a media server (Jellyfin),
+  a Youtube downloader (MeTube), a file browser, a proxy manager with GUI and a community portal
+  fully editable thru a web code editor using Markdown.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://gitlab.com/coletivo-coolab/jurebaba'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://gitlab.com/coletivo-coolab/jurebaba/-/raw/main/jurubeba-logo.png
+data:
+  applicationEnvironmentVariables:
+    - JELLYFIN_PublishedServerUrl: flix.psp.app.br
+    - TZ: America/Brasil
+    - PASSWORD: admin
+    - PROXY_DOMAIN: code.psp.app.br
+    - DOWNLOAD_DIR: /downloads/metube-video
+    - AUDIO_DOWNLOAD_DIR: /downloads/metube-audio
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - raspberrypi4-64
+version: 1.0.0
+
+
