@@ -27,7 +27,7 @@ services:
       - nginx-conf:/etc/nginx
     restart: always
     labels:
-      io.resin.features.balena-socket: '1'
+      io.balena.features.balena-socket: '1'
 
 
   jellyfin:
