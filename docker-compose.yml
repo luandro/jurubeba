@@ -10,6 +10,8 @@ volumes:
   jellyfin-lib:
   portal:
   portal-config:
+  sync-config:
+  sync-downloads:
 
 services:
   # https://hub.docker.com/r/jc21/nginx-proxy-manager/
@@ -83,7 +85,7 @@ services:
       PROXY_DOMAIN: code.psp.app.br
   # https://hub.docker.com/r/communityfirst/portal-dev
   portal:
-    image: communityfirst/portal-dev
+    image: communityfirst/portal-dev:1.0.0
     ports:
       - 85:3000
     restart: unless-stopped
@@ -92,7 +94,6 @@ services:
   # https://hub.docker.com/r/alexta69/metube
   metube:
     image: alexta69/metube
-    container_name: metube
     restart: unless-stopped
     ports:
       - 86:8081
@@ -101,3 +102,18 @@ services:
     environment:
       DOWNLOAD_DIR: /downloads/metube-video
       AUDIO_DOWNLOAD_DIR: /downloads/metube-audio
+  # https://docs.linuxserver.io/images/docker-resilio-sync
+  resilio-sync:
+    image: lscr.io/linuxserver/resilio-sync
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Brasil
+    volumes:
+      - sync-config:/config
+      - sync-downloads:/downloads
+      - media:/sync
+    ports:
+      - 8888:8888
+      - 55555:55555
+    restart: unless-stopped
